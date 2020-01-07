@@ -25,7 +25,10 @@
                            </ValidationProvider>
                        </v-col>
                        <v-col cols="12">
-                           <v-btn class="primary" @click="handleSubmit(loadMeteoData)">Voir</v-btn>
+                           <v-btn class="primary"
+                                  :loading="isloading"
+                                  :disabled="isloading"
+                                  @click="handleSubmit(loadMeteoData)">Voir</v-btn>
                        </v-col>
                        </ValidationObserver>
                    </v-row>
@@ -93,6 +96,7 @@
             return {
                 city : 'Ouagadougou',
                 icon : '',
+                isloading : false,
                 meteoData : {
                     temp : '',
                     name : '',
@@ -111,6 +115,7 @@
         methods : {
             loadMeteoData : function () {
                 var vm = this;
+                vm.isloading = true;
                 fetch(`https://api.openweathermap.org/data/2.5/weather?q=${this.city}&units=metric&appid=3053291ce6abf96a5d1c4bc46647d3d6`,{
                     method : 'GET'
                 }).then(response => response.json())
@@ -122,8 +127,8 @@
                     vm.meteoData.description = data.weather.description;
                     vm.meteoData.speed = data.wind.speed;
                     vm.meteoData.humidity = data.main.humidity;
-
-                })
+                    vm.isloading = false
+                });
 
             },
 
