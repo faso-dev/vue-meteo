@@ -12,12 +12,13 @@
                    <v-row>
                        <ValidationObserver v-slot="{ handleSubmit }">
                        <v-col cols="12">
-                           <ValidationProvider name="ville" rules="required|min:5|max:30" v-slot="{ errors }">
+                           <ValidationProvider name="ville" rules="required|min:2|max:30" v-slot="{ errors }">
                            <v-text-field
                                    style="font-size: 20px"
                                    class="p-2 font-weight-light"
                                    v-model="city"
                                    type="text"
+                                   @keydown="errors = []"
                                    placeholder="Entrer votre ville..."
                            />
                                <span class="red--text">{{ errors[0] }}</span>
