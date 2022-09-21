@@ -12,7 +12,7 @@
     "express": "^4.17.1",
     "vee-validate": "^3.2.1",
     "vue": "^2.6.10",
-    "vuetify": "^2.1.0",
+    "vuetify": "^2.6.10",
     "express": "latest",
     "serve-static": "latest"
   },
